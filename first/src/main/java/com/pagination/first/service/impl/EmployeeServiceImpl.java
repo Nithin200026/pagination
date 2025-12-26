@@ -75,4 +75,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepo.deleteById(id);
     }
 
+    @Override
+    public List<Employee> createGroupEmployee(List<Employee> employeeList) {
+        return employeeRepo.saveAll(employeeList);
+    }
+
 }

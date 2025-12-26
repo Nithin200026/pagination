@@ -22,4 +22,5 @@ public interface EmployeeService {
 
     public void deleteEmployee(String id);
 
+    public List<Employee> createGroupEmployee(List<Employee> employeeList);
 }

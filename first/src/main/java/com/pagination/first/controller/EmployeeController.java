@@ -1,5 +1,6 @@
 package com.pagination.first.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.pagination.first.api.EmployeeApi;
@@ -64,6 +65,29 @@ public class EmployeeController implements EmployeeApi {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
 
 
+    }
+
+    @Override
+    @PostMapping("/createGroupEmployee")
+    public ResponseEntity<List<CreateEmployeeResponse>> createGroupEmployee(@RequestBody List<Employee> employeeList) {
+
+        List<Employee> employeeList1=employeeService.createGroupEmployee(employeeList);
+        List<CreateEmployeeResponse> createEmployeeResponses=generateResponse(employeeList1);
+        return new ResponseEntity<>(createEmployeeResponses, HttpStatus.CREATED);
+    }
+
+    private List<CreateEmployeeResponse> generateResponse(List<Employee> employeeList1) {
+
+        List<CreateEmployeeResponse> createEmployeeResponses=new ArrayList<>();
+        for(Employee emp:employeeList1)
+        {
+            CreateEmployeeResponse response=CreateEmployeeResponse.builder()
+                    .message("Employee created successfully")
+                    .Name(emp.getName())
+                    .Dept(emp.getDepartment()).build();
+            createEmployeeResponses.add(response);
+        }
+        return createEmployeeResponses;
     }
 
     @Override

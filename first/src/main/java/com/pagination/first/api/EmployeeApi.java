@@ -17,6 +17,8 @@ public interface EmployeeApi {
 
     public ResponseEntity<CreateEmployeeResponse> createEmployee(Employee employee);
 
+    public ResponseEntity<List<CreateEmployeeResponse>> createGroupEmployee(List<Employee> employeeList);
+
     public ResponseEntity<Employee> updateEmployee(String id, Employee employee);
 
     public ResponseEntity<String> deleteEmployee(String id);
